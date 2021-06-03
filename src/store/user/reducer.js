@@ -10,12 +10,17 @@ export const userReducer = (state = initialState, action) => {
     case GET_USER_LOADING:
       return {
         ...state,
+        error: '',
         loading: true,
+        user: {},
+        repos: [],
+        orgs: [],
       };
     case GET_USER_COMPLETED:
       return {
         ...state,
         loading: false,
+        error: '',
         user: action.payload.user,
         repos: action.payload.repos,
         orgs: action.payload.orgs,
@@ -24,7 +29,9 @@ export const userReducer = (state = initialState, action) => {
       return {
         ...state,
         loading: false,
-        data: [],
+        user: {},
+        repos: [],
+        orgs: [],
         error: action.payload ? action.payload.message : 'something went wrong',
       };
     default:

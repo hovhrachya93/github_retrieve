@@ -31,37 +31,39 @@ const Repositories = ({ repositoriesInfo }) => {
   return (
     <>
       {repositoriesInfo.length === 0 ? (
-        <h1 className='text-info'>User has not public repositories</h1>
+        <h1 className="text-info">User has not public repositories</h1>
       ) : (
-        <div className='overflow-auto'>
-          <Table bordered hover>
-            <thead>
-              <tr>
-                <th>#</th>
-                <th>Name</th>
-                <th>Created at</th>
-                <th>repository url</th>
-              </tr>
-            </thead>
-            <tbody>
-              {repoInfoTemp.map((i, index) => (
-                <tr key={index}>
-                  <td>{1 + index + activePage * numberPerPage}</td>
-                  <td>{i.name}</td>
-                  <td>{changeDate(i.created_at)}</td>
-                  <td
-                    style={{ cursor: 'pointer' }}
-                    className='text-primary'
-                    onClick={() => {
-                      window.open(`${i.html_url}`, '_blank');
-                    }}
-                  >
-                    {i.html_url}
-                  </td>
+        <>
+          <div className="overflow-auto">
+            <Table bordered hover>
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Name</th>
+                  <th>Created at</th>
+                  <th>repository url</th>
                 </tr>
-              ))}
-            </tbody>
-          </Table>
+              </thead>
+              <tbody>
+                {repoInfoTemp.map((i, index) => (
+                  <tr key={index}>
+                    <td>{1 + index + activePage * numberPerPage}</td>
+                    <td>{i.name}</td>
+                    <td>{changeDate(i.created_at)}</td>
+                    <td
+                      style={{ cursor: 'pointer' }}
+                      className="text-primary"
+                      onClick={() => {
+                        window.open(`${i.html_url}`, '_blank');
+                      }}
+                    >
+                      {i.html_url}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </Table>
+          </div>
           <div
             style={{
               display: 'flex',
@@ -79,7 +81,7 @@ const Repositories = ({ repositoriesInfo }) => {
               {paginationItems}
             </Pagination>
           </div>
-        </div>
+        </>
       )}
     </>
   );
